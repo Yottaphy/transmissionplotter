@@ -15,7 +15,7 @@ def avg(listin):
 def column(matrix, i):
     return [row[i] for row in matrix]
 
-filein = np.loadtxt("nogaschamfer2.txt" , dtype='i')
+filein = np.loadtxt("gaschamfer2.txt" , dtype='i')
 
 z = np.zeros((20,20))
 srfq = []
@@ -36,8 +36,11 @@ colmax = colmax[::-1]
 
 
 colavg = []
+rowavg = []
 for i in range(0,20):
     colavg.append(avg(column(z,i)))
+    rowavg.append(avg(z[i]))
+colavg = colavg[::-1]
 
 plt.rcParams['font.size'] = 18
 
@@ -50,9 +53,10 @@ axtop = plt.subplot(gs[4:5, 5:10])
 axtop.set_visible(False)
 axy.plot(rowmax, srfq)
 axx.plot(brfq,colmax)
-axy.set_ylim(0,250)
+axy.set_ylim(60,250)
 axy.yaxis.set_ticklabels([])
 axx.set_xlim(0,70)
+axy.set_xlim(0,105)
 axx.xaxis.set_ticklabels([])
 az = ax0.imshow(z, extent=[min(brfq), max(brfq), min(srfq),max(srfq)], aspect='auto', cmap = 'Blues')
 # az = ax0.contourf(z, extent=[min(brfq), max(brfq), max(srfq),  min(srfq)], cmap = 'Blues', origin = "lower")
@@ -64,5 +68,5 @@ clb.set_label("Transmission [%]", loc = 'center')
 clb.ax.xaxis.set_ticks_position('top')
 clb.ax.xaxis.set_label_position('top')
 
-plt.savefig("nogas_2cham.pdf", bbox_inches = 'tight', pad_inches = 0.1, transparent=True)
-plt.savefig("nogas_2cham.png", bbox_inches = 'tight', pad_inches = 0.1, transparent=True)
+plt.savefig("gas_2cham.pdf", bbox_inches = 'tight', pad_inches = 0.1, transparent=True)
+plt.savefig("gas_2cham.png", bbox_inches = 'tight', pad_inches = 0.1, transparent=True)
