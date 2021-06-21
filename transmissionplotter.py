@@ -15,7 +15,7 @@ def avg(listin):
 def column(matrix, i):
     return [row[i] for row in matrix]
 
-filein = np.loadtxt("gaschamfer2.txt" , dtype='i')
+filein = np.loadtxt("newgeo.txt" , dtype='i')
 
 z = np.zeros((20,20))
 srfq = []
@@ -65,6 +65,6 @@ clb.set_label("Transmission [%]", loc = 'center')
 clb.ax.xaxis.set_ticks_position('top')
 clb.ax.xaxis.set_label_position('top')
 
-plt.savefig("gas_2cham.pdf", bbox_inches = 'tight', pad_inches = 0.1, transparent=True)
-plt.savefig("gas_2cham.png", bbox_inches = 'tight', pad_inches = 0.1, transparent=True)
+plt.savefig("newgeo.pdf", bbox_inches = 'tight', pad_inches = 0.1, transparent=True)
+plt.savefig("newgeo.png", bbox_inches = 'tight', pad_inches = 0.1, transparent=True)
 
