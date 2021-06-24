@@ -73,3 +73,13 @@ clb.ax.xaxis.set_label_position('top')
 plt.savefig("widerange.pdf", bbox_inches = 'tight', pad_inches = 0.1, transparent=True)
 plt.savefig("widerange.png", bbox_inches = 'tight', pad_inches = 0.1, transparent=True)
 
+list = [77,90,85,90,91,96,95,94,91,88,92,91,90,87,92,88,86,87,85,70,0]
+
+fig2, axproj = plt.subplots()
+axproj.plot(srfq, list, label = "Helium")
+axproj.set_xlabel("Bend RFQ Voltage Amplitude [V]")
+axproj.set_ylabel("Transmission [%]")
+axproj.legend(frameon=False,fancybox=False,framealpha=1)
+# axproj.set_title("Transmission at 30 V Straight RFQ Voltage")
+plt.savefig("projection.pdf", bbox_inches = 'tight', pad_inches = 0.1, transparent=True)
+plt.savefig("projection.png", bbox_inches = 'tight', pad_inches = 0.1, transparent=True)
