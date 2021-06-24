@@ -15,28 +15,33 @@ def avg(listin):
 def column(matrix, i):
     return [row[i] for row in matrix]
 
-filein = np.loadtxt("newgeo.txt" , dtype='i')
+filein = np.loadtxt("widerange.txt" , dtype='i')
 
-z = np.zeros((20,20))
+nrows = 21
+ncols = 15
+
+z = np.zeros((nrows,ncols))
 srfq = []
 brfq = list(filein[0])
 brfq.pop(0)
 
-for i in range(1,21):
+for i in range(1,nrows+1):
     srfq.append(filein[i][0])
-    for j in range(1,21):
-        z[i-1][20-j] = filein[i][j]
+    for j in range(1,ncols+1):
+        z[i-1][ncols-j] = filein[i][j]
 
 colmax = []
 rowmax = []
-for i in range(0,20):
-    colmax.append(max(column(z,i)))
-    rowmax.append(max(list(z[i])))
+for i in range(0,max(nrows,ncols)):
+    if i < ncols:
+        colmax.append(max(column(z,i)))
+    if i < nrows:
+        rowmax.append(max(list(z[i])))
 colmax = colmax[::-1]
 
 
 colavg = []
-for i in range(0,20):
+for i in range(0,ncols):
     colavg.append(avg(column(z,i)))
 
 plt.rcParams['font.size'] = 18
@@ -50,10 +55,10 @@ axtop = plt.subplot(gs[4:5, 5:10])
 axtop.set_visible(False)
 axy.plot(rowmax, srfq)
 axx.plot(brfq,colmax)
-axy.set_ylim(60,250)
+axy.set_ylim(min(srfq),max(srfq))
 axy.set_xlim(0,105)
 axy.yaxis.set_ticklabels([])
-axx.set_xlim(0,70)
+axx.set_xlim(min(brfq),max(brfq))
 axx.xaxis.set_ticklabels([])
 az = ax0.imshow(z, extent=[min(brfq), max(brfq), min(srfq),max(srfq)], aspect='auto', cmap = 'Blues')
 # az = ax0.contourf(z, extent=[min(brfq), max(brfq), max(srfq),  min(srfq)], cmap = 'Blues', origin = "lower")
@@ -65,6 +70,6 @@ clb.set_label("Transmission [%]", loc = 'center')
 clb.ax.xaxis.set_ticks_position('top')
 clb.ax.xaxis.set_label_position('top')
 
-plt.savefig("newgeo.pdf", bbox_inches = 'tight', pad_inches = 0.1, transparent=True)
-plt.savefig("newgeo.png", bbox_inches = 'tight', pad_inches = 0.1, transparent=True)
+plt.savefig("widerange.pdf", bbox_inches = 'tight', pad_inches = 0.1, transparent=True)
+plt.savefig("widerange.png", bbox_inches = 'tight', pad_inches = 0.1, transparent=True)
 
