@@ -15,7 +15,7 @@ def avg(listin):
 def column(matrix, i):
     return [row[i] for row in matrix]
 
-filein = np.loadtxt("widerange.txt" , dtype='i')
+filein = np.loadtxt("Optimal/NewGeometry/newgeo_vacuum.txt" , dtype='i')
 
 nrows = 21
 ncols = 15
@@ -70,16 +70,5 @@ clb.set_label("Transmission [%]", loc = 'center')
 clb.ax.xaxis.set_ticks_position('top')
 clb.ax.xaxis.set_label_position('top')
 
-plt.savefig("widerange.pdf", bbox_inches = 'tight', pad_inches = 0.1, transparent=True)
-plt.savefig("widerange.png", bbox_inches = 'tight', pad_inches = 0.1, transparent=True)
-
-list = [77,90,85,90,91,96,95,94,91,88,92,91,90,87,92,88,86,87,85,70,0]
-
-fig2, axproj = plt.subplots()
-axproj.plot(srfq, list, label = "Helium")
-axproj.set_xlabel("Bend RFQ Voltage Amplitude [V]")
-axproj.set_ylabel("Transmission [%]")
-axproj.legend(frameon=False,fancybox=False,framealpha=1)
-# axproj.set_title("Transmission at 30 V Straight RFQ Voltage")
-plt.savefig("projection.pdf", bbox_inches = 'tight', pad_inches = 0.1, transparent=True)
-plt.savefig("projection.png", bbox_inches = 'tight', pad_inches = 0.1, transparent=True)
+plt.savefig("Optimal/NewGeometry/newgeo_vacuum.pdf", bbox_inches = 'tight', pad_inches = 0.1, transparent=True)
+plt.savefig("Optimal/NewGeometry/newgeo_vacuum.png", bbox_inches = 'tight', pad_inches = 0.1)
