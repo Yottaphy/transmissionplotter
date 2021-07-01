@@ -15,8 +15,9 @@ def avg(listin):
 def column(matrix, i):
     return [row[i] for row in matrix]
 
-filein = np.loadtxt("Optimal/NewGeometry/newgeo_vacuum1k.txt" , dtype='i')
+filein = np.loadtxt("Optimal/NewGeometry/widerange_notopt.txt" , dtype='f')
 
+thecolor = 'Red'
 nrows = 21
 ncols = 15
 
@@ -44,7 +45,6 @@ colmax = colmax[::-1]
 #     colavg.append(avg(column(z,i)))
 
 plt.rcParams['font.size'] = 18
-thecolor = 'Green'
 
 fig = plt.figure(figsize=(20, 15))
 gs = gridspec.GridSpec(10, 12)
@@ -74,5 +74,5 @@ clb.set_label("Transmission [%]", loc = 'center')
 clb.ax.xaxis.set_ticks_position('top')
 clb.ax.xaxis.set_label_position('top')
 
-plt.savefig("Optimal/NewGeometry/newgeo_vacuum1k.pdf", bbox_inches = 'tight', pad_inches = 0.1, transparent=True)
-plt.savefig("Optimal/NewGeometry/newgeo_vacuum1k.png", bbox_inches = 'tight', pad_inches = 0.1)
+plt.savefig("Optimal/NewGeometry/test.pdf", bbox_inches = 'tight', pad_inches = 0.1, transparent=True)
+plt.savefig("Optimal/NewGeometry/test.png", bbox_inches = 'tight', pad_inches = 0.1)

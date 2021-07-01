@@ -15,12 +15,13 @@ def avg(listin):
 def column(matrix, i):
     return [row[i] for row in matrix]
 
-fileHe = np.loadtxt("Optimal/NewGeometry/widerange_notopt.txt" , dtype='i')
-fileVac = np.loadtxt("Optimal/NewGeometry/newgeo_vacuum1k.txt" , dtype='i')
+fileHe = np.loadtxt("Optimal/NewGeometry/widerange_notopt.txt" , dtype='f')
+fileVac = np.loadtxt("Optimal/NewGeometry/newgeo_vacuum1k.txt" , dtype='f')
 # fileAr = np.loadtxt("Optimal/NewGeometry/widerange_notopt.txt" , dtype='i')
 
 nrows = 21
 ncols = 15
+col30 = 7
 
 He = np.zeros((nrows,ncols))
 Vac = np.zeros((nrows,ncols))
@@ -39,23 +40,31 @@ for i in range(1,nrows+1):
 #Plot only column for which SRFQ=30 V
 plotHe = []
 plotVac = []
+plotOther = []
 #plotAr = []
 
-for i in 
+for i in range(0,nrows):
+    plotHe.append(He[i][col30-1])
+    plotVac.append(Vac[i][col30-1])
+    # plotOther.append(Vac[i][-1])
+    #plotAr.append(Ar[i][col30-1])
+
+print(plotVac)
 
 plt.rcParams['font.size'] = 18
 
-fig2, axproj = plt.subplots()
-axproj.plot(brfq, He, color='red', label = "Helium")
-axproj.plot(brfq, Vac, color='green', label = "Vacuum")
-axproj.plot(brfq, Ar, color='Blue', label = "Argon")
+fig, axproj = plt.subplots()
+axproj.plot(brfq, plotHe, color='Red', label = "Helium")
+axproj.plot(brfq, plotVac, color='Green', label = "Vacuum @ 30 V SRFQ")
+# axproj.plot(brfq, plotOther, color='Orange', label = "Vacuum @ 70 V SRFQ")
+# axproj.plot(brfq, plotAr, color='Blue', label = "Argon")
 axproj.set_xlim(0,400)
 axproj.set_ylim(0,100)
 axproj.set_aspect(2.2)
 axproj.tick_params(top=True, right=True,direction='in')
 axproj.set_xlabel("Bend RFQ Voltage Amplitude [V]")
 axproj.set_ylabel("Transmission [%]")
-axproj.legend(fontsize='x-small', loc=8, frameon=True,fancybox=True,framealpha=1)
+fig.legend(fontsize='x-small', loc=1, frameon=True,fancybox=True,framealpha=1)
 # axproj.set_title("Transmission at 30 V Straight RFQ Voltage")
 plt.savefig("projection.pdf", bbox_inches = 'tight', pad_inches = 0.1, transparent=True)
 plt.savefig("projection.png", bbox_inches = 'tight', pad_inches = 0.1)
