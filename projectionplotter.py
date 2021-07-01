@@ -15,44 +15,40 @@ def avg(listin):
 def column(matrix, i):
     return [row[i] for row in matrix]
 
-filein = np.loadtxt("Optimal/NewGeometry/widerange_notopt.txt" , dtype='i')
+fileHe = np.loadtxt("Optimal/NewGeometry/widerange_notopt.txt" , dtype='i')
+fileVac = np.loadtxt("Optimal/NewGeometry/newgeo_vacuum1k.txt" , dtype='i')
+# fileAr = np.loadtxt("Optimal/NewGeometry/widerange_notopt.txt" , dtype='i')
 
 nrows = 21
 ncols = 15
 
-z = np.zeros((nrows,ncols))
-srfq = []
-brfq = list(filein[0])
-brfq.pop(0)
+He = np.zeros((nrows,ncols))
+Vac = np.zeros((nrows,ncols))
+Ar = np.zeros((nrows,ncols))
+brfq = []
+srfq = list(fileHe[0])
+srfq.pop(0)
 
 for i in range(1,nrows+1):
-    srfq.append(filein[i][0])
+    brfq.append(fileHe[i][0])
     for j in range(1,ncols+1):
-        z[i-1][ncols-j] = filein[i][j]
+        He[i-1][ncols-j] = fileHe[i][j]
+        Vac[i-1][ncols-j] = fileVac[i][j]
+        # Ar[i-1][ncols-j] = fileAr[i][j]
 
-colmax = []
-rowmax = []
-for i in range(0,max(nrows,ncols)):
-    if i < ncols:
-        colmax.append(max(column(z,i)))
-    if i < nrows:
-        rowmax.append(max(list(z[i])))
-colmax = colmax[::-1]
+#Plot only column for which SRFQ=30 V
+plotHe = []
+plotVac = []
+#plotAr = []
 
-
-colavg = []
-for i in range(0,ncols):
-    colavg.append(avg(column(z,i)))
+for i in 
 
 plt.rcParams['font.size'] = 18
 
-He = [77,90,85,90,91,96,95,94,91,88,92,91,90,87,92,88,86,87,85,70,0]
-Vac = [0,0,0,25,67,51,27,65,64,71,33,80,86,28,10,2,11,0,0,0,0]
-Ar = []
-
 fig2, axproj = plt.subplots()
-axproj.plot(srfq, He, color='red', label = "Helium")
-axproj.plot(srfq, Vac, color='green', label = "Vacuum")
+axproj.plot(brfq, He, color='red', label = "Helium")
+axproj.plot(brfq, Vac, color='green', label = "Vacuum")
+axproj.plot(brfq, Ar, color='Blue', label = "Argon")
 axproj.set_xlim(0,400)
 axproj.set_ylim(0,100)
 axproj.set_aspect(2.2)
