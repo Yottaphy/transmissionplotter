@@ -17,7 +17,7 @@ def column(matrix, i):
 
 fileHe = np.loadtxt("Optimal/NewGeometry/widerange_notopt.txt" , dtype='f')
 fileVac = np.loadtxt("Optimal/NewGeometry/newgeo_vacuum1k.txt" , dtype='f')
-# fileAr = np.loadtxt("Optimal/NewGeometry/widerange_notopt.txt" , dtype='i')
+# fileAr = np.loadtxt("Optimal/NewGeometry/widerange_notopt.txt" , dtype='f')
 
 nrows = 21
 ncols = 15
@@ -54,14 +54,15 @@ print(plotVac)
 plt.rcParams['font.size'] = 18
 
 fig, axproj = plt.subplots()
+axproj.plot(brfq, plotVac, color='Green', label = "Vacuum")
 axproj.plot(brfq, plotHe, color='Red', label = "Helium")
-axproj.plot(brfq, plotVac, color='Green', label = "Vacuum @ 30 V SRFQ")
 # axproj.plot(brfq, plotOther, color='Orange', label = "Vacuum @ 70 V SRFQ")
 # axproj.plot(brfq, plotAr, color='Blue', label = "Argon")
-axproj.set_xlim(0,400)
+axproj.set_xlim(0,410)
 axproj.set_ylim(0,100)
 axproj.set_aspect(2.2)
 axproj.tick_params(top=True, right=True,direction='in')
+axproj.set_title("Straight RFQ Voltage Amplitude 30V")
 axproj.set_xlabel("Bend RFQ Voltage Amplitude [V]")
 axproj.set_ylabel("Transmission [%]")
 fig.legend(fontsize='x-small', loc=1, frameon=True,fancybox=True,framealpha=1)
