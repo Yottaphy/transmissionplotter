@@ -15,11 +15,13 @@ def avg(listin):
 def column(matrix, i):
     return [row[i] for row in matrix]
 
-filein = np.loadtxt("Optimal/NewGeometry/widerange_notopt.txt" , dtype='f')
+filename = 'Optimal/NewGeometry/newgeo_argon_opt'
 
-thecolor = 'Red'
-nrows = 21
-ncols = 15
+filein = np.loadtxt(filename+".txt" , dtype='f')
+
+thecolor = 'Blue'
+nrows = 23
+ncols = 23
 
 z = np.zeros((nrows,ncols))
 brfq = []
@@ -74,5 +76,5 @@ clb.set_label("Transmission [%]", loc = 'center')
 clb.ax.xaxis.set_ticks_position('top')
 clb.ax.xaxis.set_label_position('top')
 
-plt.savefig("Optimal/NewGeometry/test.pdf", bbox_inches = 'tight', pad_inches = 0.1, transparent=True)
-plt.savefig("Optimal/NewGeometry/test.png", bbox_inches = 'tight', pad_inches = 0.1)
+plt.savefig(filename+".pdf", bbox_inches = 'tight', pad_inches = 0.1, transparent=True)
+plt.savefig(filename+".png", bbox_inches = 'tight', pad_inches = 0.1)
